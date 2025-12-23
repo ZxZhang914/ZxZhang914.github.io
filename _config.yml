@@ -9,7 +9,7 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default" # the available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
-title                    : "Your Name / Site Title"
+title                    : "Zhuoxiao Zhang's website"
 title_separator          : "-"
 name                     : &name "Zhuoxiao Zhang"
 description              : &description "Dual-degree student in Electrical & Computer Engineering and Industrial & Operations Engineering"   # Update this with a general description of your site, this is the default if not overridden by a page
@@ -23,14 +23,14 @@ repository               : "academicpages/academicpages.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
-  name             : "Your Sidebar Name"
-  pronouns         : # example: "she/her"  
+  avatar           : "Zhuoxiao Zhang headshot.png"
+  name             : "Zhuoxiao Zhang (Warren)"
+  pronouns         :  example: "he/his"  
   bio              : "Short biography for the left-hand sidebar"
   location         : "Earth"
   employer         : "Red Brick University"
   uri              : # URL
-  email            : "none@example.org" 
+  email            : "waenx@umich.edu" 
 
   # Academic websites
   academia         : # URL
