@@ -1,14 +1,9 @@
-name             : "Zhuoxiao Zhang"
-bio              : "Dual-degree student in ECE & IOE | Research & Engineering"
-location         : "Ann Arbor, MI / Shanghai, China"
-email            : "waenx@umich.edu"
+Name Name:
+  name        : "Zhuoxiao Zhang"
+  uri         : "https://name.com"
+  email       : "waenx@umich.edu"
+  bio         : "This is the first name."
+  avatar      : "Zhuoxiao Zhang headshot.jpg"
+  twitter     : "name"
+  google_plus : "Name"
 
-googlescholar    : ""
-orcid            : ""
-pubmed           : ""
-
-github           : "ZxZhang914"
-linkedin         : ""
-twitter          : ""
-
-avatar           : "/images/Zhuoxiao Zhang headshot.jpg"
