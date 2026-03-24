@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zhuoxiao Zhang (Warren)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #232636;
+      --border: #2e3348;
+      --accent: #6c8fff;
+      --accent2: #a78bfa;
+      --text: #e2e8f0;
+      --text-muted: #8892a4;
+      --text-dim: #4a5568;
+      --green: #4ade80;
+      --yellow: #fbbf24;
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── Scrollbar ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ─── Nav ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(15,17,23,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 60px;
+    }
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ─── Layout ─── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 2rem);
+    }
+
+    section { padding: 5rem 0; }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      color: var(--text);
+    }
+    .section-title span { color: var(--accent2); }
+
+    /* ─── Hero ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding-top: 60px;
+    }
+    .hero-inner { width: 100%; }
+    .hero-greeting {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .hero-name {
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .hero-name .warren { color: var(--accent2); }
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+    }
+    .hero-summary {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 580px;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .hero-badges {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+    .badge {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .badge.green { border-color: rgba(74,222,128,0.3); color: var(--green); }
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+    }
+    .btn-primary:hover { background: #5a7aff; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+    /* ─── Cards ─── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .card:hover { border-color: rgba(108,143,255,0.4); transform: translateY(-2px); }
+
+    .card-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 1rem; flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+    .card-title { font-size: 1rem; font-weight: 600; color: var(--text); }
+    .card-subtitle { font-size: 0.85rem; color: var(--accent2); font-style: italic; margin-bottom: 0.4rem; }
+    .card-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+    .card-location {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+    .card-meta { text-align: right; flex-shrink: 0; }
+
+    .card ul {
+      list-style: none;
+      margin-top: 0.75rem;
+    }
+    .card ul li {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      padding: 0.2rem 0 0.2rem 1.2rem;
+      position: relative;
+    }
+    .card ul li::before {
+      content: '▸';
+      position: absolute; left: 0;
+      color: var(--accent);
+      font-size: 0.7rem;
+      top: 0.3rem;
+    }
+
+    /* ─── Education ─── */
+    .edu-gpa {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(108,143,255,0.1);
+      border: 1px solid rgba(108,143,255,0.25);
+      border-radius: 5px;
+      padding: 0.15rem 0.6rem;
+      font-size: 0.78rem;
+      color: var(--accent);
+      margin-top: 0.4rem;
+      margin-right: 0.4rem;
+    }
+    .edu-honor {
+      font-size: 0.8rem;
+      color: var(--yellow);
+      margin-top: 0.5rem;
+    }
+
+    /* ─── Skills ─── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+    .skill-card-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.85rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skill-tag {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ─── Contact ─── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .contact-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      display: flex; align-items: center; gap: 0.75rem;
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .contact-item:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .contact-icon { font-size: 1.2rem; }
+    .contact-label { font-size: 0.75rem; color: var(--text-dim); }
+    .contact-value { font-size: 0.875rem; color: var(--text); font-weight: 500; }
+
+    /* ─── Divider ─── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ─── Animations ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .card-header { flex-direction: column; }
+      .card-meta { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Nav ─── -->
+<nav>
+  <span class="nav-logo">warren.dev</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ─── Hero ─── -->
+  <section id="hero">
+    <div class="hero-inner fade-in visible">
+      <p class="hero-greeting">// Hello, world! I'm</p>
+      <h1 class="hero-name">Zhuoxiao Zhang<br><span class="warren">(Warren)</span></h1>
+      <p class="hero-tagline">Dual-Degree Engineer · ECE × IOE · Financial Engineering</p>
+      <p class="hero-summary">
+        8-year programming experience with a strong background in quantitative analysis.
+        First Prize winner in NOIP. Applying cross-disciplinary knowledge from Electrical Engineering
+        and Industrial & Operations Engineering to build impactful systems — from AI fleet optimization
+        to battery estimation via machine learning.
+      </p>
+      <div class="hero-badges">
+        <span class="badge">🎓 UMich IOE · GPA 4.0</span>
+        <span class="badge">🎓 SJTU ECE · GPA 3.64</span>
+        <span class="badge green">● U.S. Permanent Resident</span>
+        <span class="badge">📍 Ann Arbor, MI</span>
+      </div>
+      <div class="hero-cta">
+        <a href="mailto:waenx@umich.edu" class="btn btn-primary">
+          ✉ Contact Me
+        </a>
+        <a href="https://github.com/ZxZhang914" target="_blank" class="btn btn-outline">
+          ⎇ GitHub
+        </a>
+        <a href="#projects" class="btn btn-outline">
+          ↓ View Projects
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ─── Education ─── -->
+  <section id="education">
+    <p class="section-label">// 01. education</p>
+    <h2 class="section-title">Where I <span>Studied</span></h2>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div>
+          <div class="card-title">University of Michigan – Ann Arbor</div>
+          <div class="card-subtitle">B.S. in Industrial and Operations Engineering (IOE)</div>
+          <div style="font-size:0.82rem; color:var(--text-muted); margin-top:0.2rem;">Concentration: Financial Engineering</div>
+          <div style="margin-top:0.5rem;">
+            <span class="edu-gpa">GPA 4.00 / 4.00</span>
+            <span class="edu-gpa">Top 1% in Major</span>
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Aug 2025 – May 2027</div>
+          <div class="card-location">Ann Arbor, MI</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Shanghai Jiao Tong University <span style="color:var(--text-muted);font-weight:400;font-size:0.85rem;">(Top 5 in China)</span></div>
+          <div class="card-subtitle">B.S. in Electrical and Computer Engineering (ECE)</div>
+          <div style="margin-top:0.5rem;">
+            <span class="edu-gpa">GPA 3.64 / 4.00</span>
+            <span class="edu-gpa">Top 20% in Major</span>
+          </div>
+          <div class="edu-honor">
+            🏅 SJTU Undergraduate Excellence Scholarship (Class B 2023–24, Class C 2024–25)
+          </div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Sep 2023 – Aug 2025</div>
+          <div class="card-location">Shanghai, China</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ─── Research ─── -->
+  <section id="research">
+    <p class="section-label">// 02. research</p>
+    <h2 class="section-title">Research <span>Experience</span></h2>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div>
+          <div class="card-title">University of Michigan — Data Fusion Laboratory</div>
+          <div class="card-subtitle">Undergraduate Research Assistant</div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Dec 2025 – Present</div>
+          <div class="card-location">Ann Arbor, MI</div>
+        </div>
+      </div>
+      <ul>
+        <li>Worked on data analytics for the estimation of vehicle batteries via EIS (Electrochemical Impedance Spectroscopy) signal</li>
+        <li>Applied machine learning tools to differentiate equivalent circuit models</li>
+      </ul>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div>
+          <div class="card-title">University of Michigan — Intelligence & Human Augmentation Lab</div>
+          <div class="card-subtitle">Undergraduate Research Assistant</div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Sep 2025 – Jan 2026</div>
+          <div class="card-location">Ann Arbor, MI</div>
+        </div>
+      </div>
+      <ul>
+        <li>Contributed to the project <em>"Emotion Recognition through Multimodal Data"</em></li>
+        <li>Preprocessed driving, HR, and EDA data; extracted features; implemented ML models in Python</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ─── Projects ─── -->
+  <section id="projects">
+    <p class="section-label">// 03. projects</p>
+    <h2 class="section-title">What I've <span>Built</span></h2>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Real-Time Color Recognition Camera</div>
+          <div class="card-subtitle">C++ · OpenCV · Qt6 · CMake · MSYS2</div>
+        </div>
+        <div class="card-meta">
+          <div class="card-location">Ann Arbor, MI</div>
+        </div>
+      </div>
+      <ul>
+        <li>Built a real-time color detection system with RGB/HSV analysis, mosaic transformation, and interactive HUD</li>
+        <li>Implemented keyboard-controlled modes (mosaic toggle, screenshot save) and smoothed outputs via EMA filtering</li>
+        <li>Resolved Windows cross-platform build via MSYS2, CMake, and Qt6 dynamic linking</li>
+      </ul>
+      <div style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <a href="https://github.com/ZxZhang914" target="_blank" class="btn btn-outline" style="padding:0.4rem 0.9rem; font-size:0.78rem;">⎇ View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div>
+          <div class="card-title">ISUZU — Agentic AI for Autonomous BEV Fleet Optimization</div>
+          <div class="card-subtitle">Technical and Testing Engineer · Python · ML · Simulation</div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Jan 2026 – Present</div>
+          <div class="card-location">Ann Arbor, MI</div>
+        </div>
+      </div>
+      <ul>
+        <li>Collaborated directly with ISUZU Motors to develop an AI-based optimization agent for autonomous BEV fleet routing</li>
+        <li>Built energy consumption prediction models and simulation testbeds using real-world vehicle and environmental data</li>
+        <li>Demonstrated improved delivery efficiency over baseline heuristic routing under operational constraints</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ─── Skills ─── -->
+  <section id="skills">
+    <p class="section-label">// 04. skills</p>
+    <h2 class="section-title">Technical <span>Skills</span></h2>
+
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">MATLAB</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">VBA</span>
+          <span class="skill-tag">LaTeX</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">Tools & Frameworks</div>
+        <div class="skill-tags">
+          <span class="skill-tag">OpenCV</span>
+          <span class="skill-tag">Qt6</span>
+          <span class="skill-tag">CMake</span>
+          <span class="skill-tag">scikit-learn</span>
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">Git</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">Certifications</div>
+        <div class="skill-tags">
+          <span class="skill-tag">GRE 328+4.5</span>
+          <span class="skill-tag">TOEFL 109</span>
+          <span class="skill-tag">CET-4</span>
+          <span class="skill-tag">NOIP First Prize</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">Domains</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Machine Learning</span>
+          <span class="skill-tag">Signal Processing</span>
+          <span class="skill-tag">Financial Engineering</span>
+          <span class="skill-tag">Optimization</span>
+          <span class="skill-tag">Computer Vision</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ─── Leadership ─── -->
+  <section id="leadership" style="padding-bottom:3rem;">
+    <p class="section-label">// 05. leadership</p>
+    <h2 class="section-title">Beyond <span>Code</span></h2>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div>
+          <div class="card-title">University of Michigan — Bursley Dining Hall</div>
+          <div class="card-subtitle">Student Worker</div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Sep 2025 – Present</div>
+          <div class="card-location">Ann Arbor, MI</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div>
+          <div class="card-title">UM-SJTU Joint Institute</div>
+          <div class="card-subtitle">Teaching Assistant</div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Feb 2025 – Apr 2025</div>
+          <div class="card-location">Shanghai, China</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Volunteer Teaching — Hengyang, Hunan</div>
+          <div class="card-subtitle">Member of volunteer teaching team</div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">Dec 2023</div>
+          <div class="card-location">Hunan, China</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ─── Contact ─── -->
+  <section id="contact">
+    <p class="section-label">// 06. contact</p>
+    <h2 class="section-title">Get in <span>Touch</span></h2>
+
+    <div class="contact-grid">
+      <a href="mailto:waenx@umich.edu" class="contact-item">
+        <span class="contact-icon">✉</span>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">waenx@umich.edu</div>
+        </div>
+      </a>
+      <a href="tel:+17342102259" class="contact-item">
+        <span class="contact-icon">📱</span>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">(734) 210-2259</div>
+        </div>
+      </a>
+      <a href="https://github.com/ZxZhang914" target="_blank" class="contact-item">
+        <span class="contact-icon">⎇</span>
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-value">ZxZhang914</div>
+        </div>
+      </a>
+      <div class="contact-item" style="cursor:default;">
+        <span class="contact-icon">📍</span>
+        <div>
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Ann Arbor, MI</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Built with HTML &amp; CSS · Deployed on GitHub Pages · © 2026 Zhuoxiao Zhang (Warren)</p>
+</footer>
+
+<script>
+  // Intersection Observer for fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--text)'
+        : 'var(--text-muted)';
+    });
+  });
+</script>
+
+</body>
+</html>
