@@ -145,7 +145,7 @@
       max-width: 600px;
     }
     .hero-summary {
-      font-size: 0.95rem;
+      font-size: 1.025rem;
       color: var(--text-muted);
       max-width: 580px;
       line-height: 1.8;
@@ -160,7 +160,7 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 0.3rem 0.75rem;
-      font-size: 0.8rem;
+      font-size: 0.875rem;
       color: var(--text-muted);
       font-family: 'JetBrains Mono', monospace;
     }
@@ -207,16 +207,16 @@
       gap: 1rem; flex-wrap: wrap;
       margin-bottom: 0.5rem;
     }
-    .card-title { font-size: 1rem; font-weight: 600; color: var(--text); }
-    .card-subtitle { font-size: 0.85rem; color: var(--accent2); font-style: italic; margin-bottom: 0.4rem; }
+    .card-title { font-size: 1.05rem; font-weight: 600; color: var(--text); }
+    .card-subtitle { font-size: 0.925rem; color: var(--accent2); font-style: italic; margin-bottom: 0.4rem; }
     .card-date {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       color: var(--text-dim);
       white-space: nowrap;
     }
     .card-location {
-      font-size: 0.8rem;
+      font-size: 0.875rem;
       color: var(--text-dim);
     }
     .card-meta { text-align: right; flex-shrink: 0; }
@@ -226,7 +226,7 @@
       margin-top: 0.75rem;
     }
     .card ul li {
-      font-size: 0.875rem;
+      font-size: 0.95rem;
       color: var(--text-muted);
       padding: 0.2rem 0 0.2rem 1.2rem;
       position: relative;
@@ -246,13 +246,13 @@
       border: 1px solid rgba(108,143,255,0.25);
       border-radius: 5px;
       padding: 0.15rem 0.6rem;
-      font-size: 0.78rem;
+      font-size: 0.85rem;
       color: var(--accent);
       margin-top: 0.4rem;
       margin-right: 0.4rem;
     }
     .edu-honor {
-      font-size: 0.8rem;
+      font-size: 0.95rem;
       color: var(--yellow);
       margin-top: 0.5rem;
     }
@@ -260,7 +260,7 @@
     /* ─── Skills ─── */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
     .skill-card {
@@ -270,7 +270,7 @@
       padding: 1.25rem;
     }
     .skill-card-title {
-      font-size: 0.8rem;
+      font-size: 0.875rem;
       font-weight: 600;
       color: var(--accent);
       text-transform: uppercase;
@@ -283,7 +283,7 @@
       border: 1px solid var(--border);
       border-radius: 5px;
       padding: 0.2rem 0.6rem;
-      font-size: 0.78rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
       font-family: 'JetBrains Mono', monospace;
     }
@@ -291,7 +291,7 @@
     /* ─── Contact ─── */
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
     .contact-item {
@@ -305,8 +305,8 @@
     }
     .contact-item:hover { border-color: var(--accent); transform: translateY(-2px); }
     .contact-icon { font-size: 1.2rem; }
-    .contact-label { font-size: 0.75rem; color: var(--text-dim); }
-    .contact-value { font-size: 0.875rem; color: var(--text); font-weight: 500; }
+    .contact-label { font-size: 0.825rem; color: var(--text-dim); }
+    .contact-value { font-size: 0.95rem; color: var(--text); font-weight: 500; }
 
     /* ─── Divider ─── */
     .divider {
@@ -338,6 +338,7 @@
       .nav-links { display: none; }
       .card-header { flex-direction: column; }
       .card-meta { text-align: left; }
+      .skills-grid, .contact-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
