@@ -365,13 +365,9 @@
     <div class="hero-inner fade-in visible">
       <p class="hero-greeting">// Hello, world! I'm</p>
       <h1 class="hero-name">Zhuoxiao Zhang<br><span class="warren">(Warren)</span></h1>
-      <p class="hero-tagline">Dual-Degree Engineer · ECE × IOE</p>
+      <p class="hero-tagline">Dual-Degree Engineer · ECE × IOE · Financial Engineering</p>
       <p class="hero-summary">
-        8 years of programming experience and a strong foundation in algorithms and quantitative analysis. 
-        
-        First Prize winner in NOIP and recipient of the Accenture Industrial and Operations Engineering Scholarship. 
-        
-        Applies cross-disciplinary training in ECE and IOE to develop impactful systems, including AI-driven fleet optimization and machine learning–based battery estimation.
+        Dual-degree engineer (ECE + IOE) with 8-year programming experience, specializing in machine learning and data-driven modelling. Research experience in battery health diagnostics and AI-based EV fleet optimization. Strong quantitative foundation with Financial Engineering concentration; recipient of NOIP First Prize and Accenture IOE Scholarship.
       </p>
       <div class="hero-badges">
         <span class="badge">🎓 UMich IOE · GPA 3.94</span>
@@ -432,7 +428,7 @@
             <span class="edu-gpa">Top 20% in Major</span>
           </div>
           <div class="edu-honor">
-            🏅 SJTU Undergraduate Excellence Scholarship (Class B 2023–24, Class C 2024–25)
+            🏅 SJTU Undergraduate Excellence Scholarship (Class B in 2024, Class C in 2025)
           </div>
         </div>
         <div class="card-meta">
@@ -454,7 +450,7 @@
       <div class="card-header">
         <div>
           <div class="card-title">University of Michigan — Data Fusion Laboratory</div>
-          <div class="card-subtitle">SURE Student Research Assistant</div>
+          <div class="card-subtitle">SURE Research Assistant</div>
         </div>
         <div class="card-meta">
           <div class="card-date">Dec 2025 – Present</div>
@@ -462,10 +458,9 @@
         </div>
       </div>
       <ul>
-        <li>Conducted battery health estimation and electrochemical impedance spectroscopy (EIS) analytics for lithium-ion batteries using machine learning-based equivalent circuit model (ECM) classification</li>
-        <li>Developed and compared deep learning architectures including CNN, DNN, and MLP models for ECM identification</li>
-        <li>Performed feature selection and interpretability analysis using LASSO regression to identify key EIS features</li>
-        <li>Evaluated model generalization and classification performance through confusion matrix analysis, misclassification studies, and cross-model comparison</li>
+        <li>Developed ML pipeline for lithium-ion battery health estimation via EIS analytics, achieving <strong>98.5% classification accuracy</strong> on ECM identification using CNN, DNN, and MLP architectures built with TensorFlow</li>
+        <li>Benchmarked three deep learning architectures for ECM classification; identified optimal model through confusion matrix analysis and cross-model misclassification comparison</li>
+        <li>Applied LASSO regression for feature selection and interpretability analysis, reducing feature dimensionality while maintaining classification performance</li>
       </ul>
     </div>
 
@@ -517,8 +512,8 @@
     <div class="card fade-in">
       <div class="card-header">
         <div>
-          <div class="card-title">ISUZU — Agentic AI for Autonomous BEV Fleet Optimization</div>
-          <div class="card-subtitle">Technical and Testing Engineer · Python · ML · Simulation</div>
+          <div class="card-title">ISUZU Motors × University of Michigan MDP</div>
+          <div class="card-subtitle">Technical and Testing Engineer · Python · OR-Tools · TensorFlow</div>
         </div>
         <div class="card-meta">
           <div class="card-date">Jan 2026 – Present</div>
@@ -526,10 +521,31 @@
         </div>
       </div>
       <ul>
-        <li>Collaborated directly with ISUZU Motors to develop an AI-based optimization agent for autonomous BEV fleet routing</li>
-        <li>Built energy consumption prediction models and simulation testbeds using real-world vehicle and environmental data</li>
-        <li>Demonstrated improved delivery efficiency over baseline heuristic routing under operational constraints</li>
+        <li>Designed and evaluated baseline routing algorithms (Held-Karp DP, VROOM) for BEV fleet optimization, benchmarking against OR-Tools constraint solver to validate final algorithm selection</li>
+        <li>Developed and tested frontend interface and AI chatbot for operator interaction, enabling natural language route queries and real-time re-planning with 5-minute replan intervals</li>
+        <li>Delivered an end-to-end routing system integrating physics-informed energy model and OR-Tools solver via API to optimize routes for 5+ vehicles across 20+ delivery stops</li>
       </ul>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Battery SOH Prediction & Explainability Dashboard</div>
+          <div class="card-subtitle">Python · XGBoost · LSTM · SHAP · Streamlit · Docker</div>
+        </div>
+        <div class="card-meta">
+          <div class="card-date">May 2026 – Present</div>
+          <div class="card-location">Ann Arbor, MI</div>
+        </div>
+      </div>
+      <ul>
+        <li>Trained XGBoost and LSTM models on HUST Battery Dataset (77 cells, 146k cycles) for SOH regression; achieved XGBoost MAE=0.0174 / RMSE=0.0238, LSTM MAE=0.0070 / RMSE=0.0094</li>
+        <li>Engineered 7 cycle-level features from raw discharge curves (voltage, current, cycle duration); applied SHAP analysis identifying cycle duration and current as dominant degradation indicators</li>
+        <li>Deployed interactive Streamlit dashboard on Hugging Face Spaces (Dockerized) with SOH degradation visualization, EOL estimation, and SHAP waterfall explainability</li>
+      </ul>
+      <div style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <a href="https://huggingface.co/spaces/warrenzzx/battery-soh-dashboard" target="_blank" class="btn btn-outline" style="padding:0.4rem 0.9rem; font-size:0.78rem;">▶ Live Demo</a>
+      </div>
     </div>
   </section>
 
@@ -544,48 +560,45 @@
       <div class="skill-card fade-in">
         <div class="skill-card-title">Languages</div>
         <div class="skill-tags">
+          <span class="skill-tag">Python</span>
           <span class="skill-tag">C++</span>
           <span class="skill-tag">C</span>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">JavaScript</span>
-          <span class="skill-tag">HTML</span>
           <span class="skill-tag">MATLAB</span>
           <span class="skill-tag">SQL</span>
+          <span class="skill-tag">JavaScript</span>
           <span class="skill-tag">VBA</span>
           <span class="skill-tag">LaTeX</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">ML Frameworks</div>
+        <div class="skill-tags">
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">Scikit-learn</span>
+          <span class="skill-tag">XGBoost</span>
+          <span class="skill-tag">LightGBM</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">Tools</div>
+        <div class="skill-tags">
           <span class="skill-tag">Snowflake</span>
-        </div>
-      </div>
-      <div class="skill-card fade-in">
-        <div class="skill-card-title">Tools & Frameworks</div>
-        <div class="skill-tags">
-          <span class="skill-tag">OpenCV</span>
-          <span class="skill-tag">Qt6</span>
-          <span class="skill-tag">CMake</span>
-          <span class="skill-tag">scikit-learn</span>
-          <span class="skill-tag">NumPy</span>
-          <span class="skill-tag">Pandas</span>
           <span class="skill-tag">Git</span>
+          <span class="skill-tag">OpenCV</span>
+          <span class="skill-tag">Google OR-Tools</span>
+          <span class="skill-tag">Streamlit</span>
         </div>
       </div>
       <div class="skill-card fade-in">
-        <div class="skill-card-title">Certifications</div>
+        <div class="skill-card-title">Concepts</div>
         <div class="skill-tags">
-          <span class="skill-tag">GRE 328+4.5</span>
-          <span class="skill-tag">TOEFL 109</span>
-          <span class="skill-tag">CET-4</span>
-          <span class="skill-tag">NOIP First Prize</span>
-        </div>
-      </div>
-      <div class="skill-card fade-in">
-        <div class="skill-card-title">Domains</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Machine Learning</span>
-          <span class="skill-tag">Deep Learning</span>
-          <span class="skill-tag">Signal Processing</span>
-          <span class="skill-tag">Financial Engineering</span>
-          <span class="skill-tag">Optimization</span>
-          <span class="skill-tag">Computer Vision</span>
+          <span class="skill-tag">CNN</span>
+          <span class="skill-tag">MLP</span>
+          <span class="skill-tag">LSTM</span>
+          <span class="skill-tag">LASSO</span>
+          <span class="skill-tag">SHAP</span>
+          <span class="skill-tag">Feature Engineering</span>
+          <span class="skill-tag">Time-Series Analysis</span>
         </div>
       </div>
     </div>
