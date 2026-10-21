@@ -3,51 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Zhuoxiao Zhang's portfolio in applied machine learning, optimization, computer vision, and software engineering." />
   <title>Zhuoxiao Zhang (Warren)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0f1117;
-      --surface: #1a1d27;
-      --surface2: #232636;
-      --border: #2e3348;
-      --accent: #6c8fff;
-      --accent2: #a78bfa;
-      --text: #e2e8f0;
-      --text-muted: #8892a4;
-      --text-dim: #4a5568;
-      --green: #4ade80;
-      --yellow: #fbbf24;
+      --bg: #07161c;
+      --surface: #10252d;
+      --surface-glass: rgba(16, 37, 45, 0.82);
+      --surface2: #17323b;
+      --border: #28505b;
+      --accent: #67d8f3;
+      --accent2: #69e3b0;
+      --text: #eaf9fa;
+      --text-muted: #a8c4ca;
+      --text-dim: #6f929a;
+      --green: #69e3b0;
+      --yellow: #f5d27a;
+      --grid: rgba(103, 216, 243, 0.045);
+      --glow-blue: rgba(56, 189, 248, 0.16);
+      --glow-green: rgba(52, 211, 153, 0.12);
       --radius: 12px;
-      --nav-bg: rgba(15,17,23,0.85);
+      --nav-bg: rgba(7, 22, 28, 0.8);
     }
 
     [data-theme="light"] {
-      --bg: #f5f7fa;
+      --bg: #f3fbfb;
       --surface: #ffffff;
-      --surface2: #eef1f6;
-      --border: #d1d9e6;
-      --accent: #3a6fff;
-      --accent2: #7c3aed;
-      --text: #1a202c;
-      --text-muted: #4a5568;
-      --text-dim: #a0aec0;
-      --green: #16a34a;
-      --yellow: #d97706;
-      --nav-bg: rgba(245,247,250,0.9);
+      --surface-glass: rgba(255, 255, 255, 0.84);
+      --surface2: #e8f6f5;
+      --border: #c9e5e4;
+      --accent: #0b7892;
+      --accent2: #0b7f61;
+      --text: #17363d;
+      --text-muted: #4b6d73;
+      --text-dim: #88a6aa;
+      --green: #0b7f61;
+      --yellow: #a86a08;
+      --grid: rgba(17, 141, 169, 0.055);
+      --glow-blue: rgba(125, 211, 252, 0.3);
+      --glow-green: rgba(110, 231, 183, 0.22);
+      --nav-bg: rgba(243, 251, 251, 0.82);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--bg);
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(circle at 12% 8%, var(--glow-blue), transparent 30rem),
+        radial-gradient(circle at 88% 25%, var(--glow-green), transparent 28rem),
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: auto, auto, 36px 36px, 36px 36px;
+      background-attachment: fixed;
       color: var(--text);
       line-height: 1.7;
       overflow-x: hidden;
     }
+
+    ::selection { background: rgba(103, 216, 243, 0.28); color: var(--text); }
 
     /* ─── Scrollbar ─── */
     ::-webkit-scrollbar { width: 6px; }
@@ -60,6 +78,7 @@
       background: var(--nav-bg);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
+      box-shadow: 0 8px 30px rgba(1, 12, 16, 0.08);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 clamp(1.5rem, 5vw, 4rem);
       height: 60px;
@@ -99,7 +118,7 @@
       padding: 0 clamp(1.5rem, 5vw, 2rem);
     }
 
-    section { padding: 5rem 0; }
+    section { padding: 5rem 0; scroll-margin-top: 60px; }
 
     .section-label {
       font-family: 'JetBrains Mono', monospace;
@@ -122,8 +141,21 @@
       min-height: 100vh;
       display: flex; align-items: center;
       padding-top: 60px;
+      position: relative;
     }
-    .hero-inner { width: 100%; }
+    .hero-inner { width: 100%; position: relative; z-index: 1; }
+    #hero::after {
+      content: '';
+      position: absolute;
+      width: min(60vw, 520px);
+      height: min(60vw, 520px);
+      right: -26%;
+      top: 17%;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--glow-green), transparent 68%);
+      filter: blur(10px);
+      pointer-events: none;
+    }
     .hero-greeting {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.9rem;
@@ -136,7 +168,12 @@
       line-height: 1.1;
       margin-bottom: 0.5rem;
     }
-    .hero-name .warren { color: var(--accent2); }
+    .hero-name .warren {
+      background: linear-gradient(100deg, var(--accent), var(--accent2));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
     .hero-tagline {
       font-size: clamp(1rem, 2.5vw, 1.3rem);
       color: var(--text-muted);
@@ -156,7 +193,7 @@
       margin-bottom: 2.5rem;
     }
     .badge {
-      background: var(--surface);
+      background: var(--surface-glass);
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 0.3rem 0.75rem;
@@ -179,11 +216,12 @@
       cursor: pointer;
     }
     .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      border: 1px solid var(--accent);
+      background: linear-gradient(110deg, var(--accent), var(--accent2));
+      color: #062128;
+      border: 1px solid transparent;
+      box-shadow: 0 8px 24px rgba(52, 211, 153, 0.16);
     }
-    .btn-primary:hover { background: #5a7aff; transform: translateY(-1px); }
+    .btn-primary:hover { filter: brightness(1.08); transform: translateY(-2px); }
     .btn-outline {
       background: transparent;
       color: var(--text-muted);
@@ -193,14 +231,20 @@
 
     /* ─── Cards ─── */
     .card {
-      background: var(--surface);
+      background: var(--surface-glass);
+      backdrop-filter: blur(10px);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1.5rem;
       margin-bottom: 1rem;
-      transition: border-color 0.2s, transform 0.2s;
+      box-shadow: 0 14px 36px rgba(1, 12, 16, 0.08);
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
     }
-    .card:hover { border-color: rgba(108,143,255,0.4); transform: translateY(-2px); }
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 18px 44px rgba(1, 12, 16, 0.14);
+    }
 
     .card-header {
       display: flex; justify-content: space-between; align-items: flex-start;
@@ -256,6 +300,37 @@
       color: var(--yellow);
       margin-top: 0.5rem;
     }
+    .coursework {
+      margin-top: 0.85rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+    .coursework-row + .coursework-row { margin-top: 0.35rem; }
+    .coursework-label {
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      margin-right: 0.4rem;
+    }
+
+    /* ─── Honors ─── */
+    .honors-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .honor-card {
+      background: var(--surface-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.3rem;
+      box-shadow: 0 12px 30px rgba(1, 12, 16, 0.07);
+    }
+    .honor-name { color: var(--text); font-weight: 600; margin-bottom: 0.2rem; }
+    .honor-meta { color: var(--text-muted); font-size: 0.875rem; }
 
     /* ─── Skills ─── */
     .skills-grid {
@@ -264,7 +339,8 @@
       gap: 1rem;
     }
     .skill-card {
-      background: var(--surface);
+      background: var(--surface-glass);
+      backdrop-filter: blur(10px);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1.25rem;
@@ -295,7 +371,8 @@
       gap: 1rem;
     }
     .contact-item {
-      background: var(--surface);
+      background: var(--surface-glass);
+      backdrop-filter: blur(10px);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1.25rem;
@@ -311,7 +388,9 @@
     /* ─── Divider ─── */
     .divider {
       border: none;
-      border-top: 1px solid var(--border);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border) 18%, var(--accent) 50%, var(--border) 82%, transparent);
+      opacity: 0.65;
       margin: 0;
     }
 
@@ -333,12 +412,17 @@
     }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in { opacity: 1; transform: none; transition: none; }
+      .card, .btn, .contact-item { transition: none; }
+    }
+
     /* ─── Responsive ─── */
     @media (max-width: 600px) {
       .nav-links { display: none; }
       .card-header { flex-direction: column; }
       .card-meta { text-align: left; }
-      .skills-grid, .contact-grid { grid-template-columns: 1fr; }
+      .skills-grid, .contact-grid, .honors-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -348,7 +432,7 @@
 <nav>
   <span class="nav-logo">warren.dev</span>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
+    <li><a href="#hero">Home</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#research">Research</a></li>
     <li><a href="#projects">Projects</a></li>
@@ -367,7 +451,7 @@
       <h1 class="hero-name">Zhuoxiao Zhang<br><span class="warren">(Warren)</span></h1>
       <p class="hero-tagline">Dual-Degree Student · CS × ECE</p>
       <p class="hero-summary">
-        Dual-degree student in Computer Science and Electrical &amp; Computer Engineering with strong foundations in data structures, algorithms, machine learning, and software development. Experienced in building data-driven applications and end-to-end engineering systems using Python, Java, C++, SQL, and JavaScript, with research and project experience in battery analytics and EV fleet optimization.
+        I build applied machine learning systems and scalable software for data pipelines, model deployment, and data-driven engineering. My work spans battery health analytics, optimization, computer vision, and interactive applications.
       </p>
       <div class="hero-badges">
         <span class="badge">🎓 UMich CS · GPA 3.94</span>
@@ -377,14 +461,17 @@
         <span class="badge">🚗 Michigan Driver's License</span>
       </div>
       <div class="hero-cta">
-        <a href="mailto:waenx@umich.edu" class="btn btn-primary">
-          ✉ Contact Me
+        <a href="#projects" class="btn btn-primary">
+          ↓ View Projects
         </a>
         <a href="https://github.com/ZxZhang914" target="_blank" class="btn btn-outline">
           ⎇ GitHub
         </a>
-        <a href="#projects" class="btn btn-outline">
-          ↓ View Projects
+        <a href="Zhuoxiao_Zhang_CV_CS.pdf" download class="btn btn-outline">
+          ↧ Download CV
+        </a>
+        <a href="mailto:waenx@umich.edu" class="btn btn-outline">
+          ✉ Contact Me
         </a>
       </div>
     </div>
@@ -401,15 +488,13 @@
       <div class="card-header">
         <div>
           <div class="card-title">University of Michigan – Ann Arbor</div>
-          <div class="card-subtitle">Bachelor of Science in Engineering in Computer Science (BSE CS)</div>
+          <div class="card-subtitle">B.S.E. in Computer Science</div>
           <div style="margin-top:0.5rem;">
             <span class="edu-gpa">GPA 3.94 / 4.00</span>
           </div>
-          <div class="edu-honor">
-            🏅 Accenture Industrial and Operations Engineering Scholarship
-          </div>
-          <div class="edu-honor">
-            🏅 Michigan Engineering Continuing Student Scholarship ($3,000)
+          <div class="coursework">
+            <div class="coursework-row"><span class="coursework-label">Completed</span>EECS 281 Data Structures &amp; Algorithms · EECS 370 Computer Organization · IOE 511 Continuous Optimization</div>
+            <div class="coursework-row"><span class="coursework-label">Current</span>EECS 442 Computer Vision · EECS 445 Machine Learning · EECS 484 Database Management Systems</div>
           </div>
         </div>
         <div class="card-meta">
@@ -426,10 +511,10 @@
           <div class="card-subtitle">B.S. in Electrical and Computer Engineering (ECE)</div>
           <div style="margin-top:0.5rem;">
             <span class="edu-gpa">GPA 3.64 / 4.00</span>
-            <span class="edu-gpa">Top 20% in Major</span>
+            <span class="edu-gpa">Top 25% in Major</span>
           </div>
-          <div class="edu-honor">
-            🏅 SJTU Undergraduate Excellence Scholarship (Class B in 2024, Class C in 2025)
+          <div class="coursework">
+            <div class="coursework-row"><span class="coursework-label">Completed</span>ECE 3110J Electronic Circuits · ECE 2700J Logic Design · ECE 4010J Probabilistic Methods</div>
           </div>
         </div>
         <div class="card-meta">
@@ -442,16 +527,43 @@
 
   <hr class="divider" />
 
+  <!-- ─── Honors ─── -->
+  <section id="honors">
+    <p class="section-label">// 02. honors</p>
+    <h2 class="section-title">Recognition &amp; <span>Credentials</span></h2>
+
+    <div class="honors-grid">
+      <div class="honor-card fade-in">
+        <div class="honor-name">🏆 First Prize, NOIP</div>
+        <div class="honor-meta">National Olympiad in Informatics in Provinces · Shanghai · 2021</div>
+      </div>
+      <div class="honor-card fade-in">
+        <div class="honor-name">🏅 Michigan Engineering Scholarships</div>
+        <div class="honor-meta">Accenture IOE Scholarship · Continuing Student Scholarship ($3,000) · 2026</div>
+      </div>
+      <div class="honor-card fade-in">
+        <div class="honor-name">🎓 SJTU Undergraduate Excellence Scholarship</div>
+        <div class="honor-meta">Class B · 2024 &nbsp;·&nbsp; Class C · 2025</div>
+      </div>
+      <div class="honor-card fade-in">
+        <div class="honor-name">📊 Standardized Tests</div>
+        <div class="honor-meta">GRE 328 (Q170 · V158 · AWA 4.5)<br>TOEFL iBT 6.0 (R5.5 · L6.0 · S5.5 · W6.0)</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
   <!-- ─── Research ─── -->
   <section id="research">
-    <p class="section-label">// 02. research</p>
+    <p class="section-label">// 03. research</p>
     <h2 class="section-title">Research <span>Experience</span></h2>
 
     <div class="card fade-in">
       <div class="card-header">
         <div>
           <div class="card-title">University of Michigan — Data Fusion Laboratory</div>
-          <div class="card-subtitle">SURE Research Assistant</div>
+          <div class="card-subtitle">SURE Research Assistant · Advisor: Prof. Judy Jin</div>
         </div>
         <div class="card-meta">
           <div class="card-date">Dec 2025 – Present</div>
@@ -459,9 +571,10 @@
         </div>
       </div>
       <ul>
-        <li>Developed an ML pipeline for lithium-ion battery health estimation via EIS analytics, achieving <strong>98.5% equivalent circuit model (ECM) classification accuracy</strong> with CNN, DNN, and MLP architectures implemented in TensorFlow</li>
-        <li>Modeled six candidate ECMs and generated simulated EIS datasets, conducting self-fitting and cross-fitting experiments to evaluate model identifiability, fitting robustness, and structural differences across ECMs</li>
-        <li>Demonstrated that low EIS fitting error does not necessarily translate to accurate SOH prediction, motivating task-aware ECM selection and providing quantitative evidence to support sponsors in selecting ECM structures for downstream health estimation</li>
+        <li>Built an end-to-end ML pipeline for lithium-ion battery health estimation from EIS data, achieving <strong>98.5% classification accuracy</strong> on circuit-model structure with CNN, DNN, and MLP models in TensorFlow</li>
+        <li>Generated simulated datasets for six candidate equivalent circuit models and ran self- and cross-fitting experiments to evaluate model identifiability and fitting robustness</li>
+        <li>Developed a modular Python benchmarking suite across linear, MLP, and XGBoost model families to test whether each model's health information is consistent across model types</li>
+        <li>Designed a weighted ranking framework with data-driven weights and robustness checks, showing that the best-fitting model is not necessarily the best predictor and motivating task-aware model selection</li>
       </ul>
     </div>
 
@@ -487,14 +600,14 @@
 
   <!-- ─── Projects ─── -->
   <section id="projects">
-    <p class="section-label">// 03. projects</p>
+    <p class="section-label">// 04. projects</p>
     <h2 class="section-title">What I've <span>Built</span></h2>
 
     <div class="card fade-in">
       <div class="card-header">
         <div>
           <div class="card-title">ISUZU Motors × University of Michigan MDP</div>
-          <div class="card-subtitle">Technical and Testing Engineer · Python · Google OR-Tools · CLI</div>
+          <div class="card-subtitle">Battery-Electric Fleet Routing · Python · Google OR-Tools · Flask · REST APIs</div>
         </div>
         <div class="card-meta">
           <div class="card-date">Jan 2026 – Present</div>
@@ -502,26 +615,26 @@
         </div>
       </div>
       <ul>
-        <li>Designed a multi-vehicle routing pipeline to optimize routes for 5+ battery electric vehicles across 20+ delivery stops, balancing travel time, distance, and energy consumption</li>
-        <li>Built a CLI-based workflow to retrieve map and routing data, solve vehicle routes with Google OR-Tools, and integrate a physics-informed energy model to estimate route-level battery consumption</li>
-        <li>Achieved <strong>10%+ route optimization</strong> in an example delivery scenario compared with manually planned Google Maps routes, validating the effectiveness of the automated routing approach</li>
+        <li>Developed routing optimization algorithms for an industry-sponsored battery-electric fleet planning system, implementing a TSP baseline and integrating Google OR-Tools for constrained vehicle routing with a physics-informed energy model</li>
+        <li>Designed a dynamic replanning approach incorporating real-time traffic updates, route stability, and operational constraints to adapt existing routes to changing conditions</li>
+        <li>Integrated optimization algorithms into a Flask backend through REST APIs, collaborating with frontend teammates to deliver an interactive route planning application</li>
       </ul>
     </div>
 
     <div class="card fade-in">
       <div class="card-header">
         <div>
-          <div class="card-title">ColorVisionPlusPlus — Real-Time Color Recognition System</div>
-          <div class="card-subtitle">C++17 · OpenCV 4.x · CMake · CIE L*a*b* · CIEDE2000</div>
+          <div class="card-title">ColorVision++ — Perceptual Color Analysis Engine</div>
+          <div class="card-subtitle">C++17 · OpenCV 4 · CMake · CIE L*a*b* · CIEDE2000 · K-Means++</div>
         </div>
         <div class="card-meta">
           <div class="card-location">Ann Arbor, MI</div>
         </div>
       </div>
       <ul>
-        <li>Implemented a full CIE L*a*b* colorimetry pipeline with D65 illuminant and CIEDE2000 perceptual color-difference metric, achieving <strong>84% classification accuracy</strong> vs. 64% HSV baseline with 40% lower perceptual error</li>
-        <li>Built K-Means++ dominant color extraction operating in Lab space and real-time colorblindness simulation (Protanopia, Deuteranopia, Tritanopia) via Daltonization matrices with gamma correction</li>
-        <li>Resolved Windows cross-platform build via MSYS2, CMake, and dynamic linking; keyboard-controlled modes with EMA-smoothed HUD output</li>
+        <li>Built an interactive real-time camera app with four modes: color exploration, a timed color-hunting game, selective-color photography, and a persistent collectible color album</li>
+        <li>Implemented a standards-based sRGB-to-CIE L*a*b* pipeline, complete CIEDE2000 color matching, custom K-Means++ dominant-color tracking, pixel-art rendering, and gamma-correct simulation of three color-vision deficiencies</li>
+        <li>Benchmarked the 129-color perceptual engine against the original HSV classifier, achieving <strong>84% broad-category accuracy</strong> vs. 64% and reducing mean perceptual error from 9.33 to 5.63 (<strong>40% lower</strong>)</li>
       </ul>
       <div style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
         <a href="https://github.com/ZxZhang914/ColorVisionPlusPlus" target="_blank" class="btn btn-outline" style="padding:0.4rem 0.9rem; font-size:0.78rem;">⎇ View on GitHub</a>
@@ -557,9 +670,9 @@
         </div>
       </div>
       <ul>
-        <li>Built a cross-platform desktop app (Windows / macOS / Linux) that displays a frosted-glass floating window with always-on-top lyrics synchronized to Spotify playback in real time</li>
-        <li>Implemented KTV-style character-by-character lyric highlighting with multi-source fallback (NetEase Cloud Music, LRCLIB, lyrics.ovh) to maximize lyric availability</li>
-        <li>Integrated Spotify PKCE OAuth flow for secure, server-free authentication; added in-window playback controls, auto-scroll, and adjustable font sizing via keyboard shortcuts</li>
+        <li>Built a cross-platform Electron desktop app that displays lyrics for the currently playing Spotify track in a frosted-glass, always-on-top overlay</li>
+        <li>Implemented Spotify PKCE OAuth, multi-source lyric retrieval, synchronized highlighting, playback controls, auto-scroll, and adjustable typography</li>
+        <li><strong>In progress:</strong> Whisper-based forced alignment, LLM-assisted lyric disambiguation, streaming translation, and auto-update releases for daily use</li>
       </ul>
       <div style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
         <a href="https://github.com/ZxZhang914/Spotify-Lyrics-Viewer" target="_blank" class="btn btn-outline" style="padding:0.4rem 0.9rem; font-size:0.78rem;">⎇ View on GitHub</a>
@@ -571,7 +684,7 @@
 
   <!-- ─── Skills ─── -->
   <section id="skills">
-    <p class="section-label">// 04. skills</p>
+    <p class="section-label">// 05. skills</p>
     <h2 class="section-title">Technical <span>Skills</span></h2>
 
     <div class="skills-grid">
@@ -585,17 +698,20 @@
           <span class="skill-tag">MATLAB</span>
           <span class="skill-tag">SQL</span>
           <span class="skill-tag">JavaScript</span>
-          <span class="skill-tag">VBA</span>
-          <span class="skill-tag">LaTeX</span>
+          <span class="skill-tag">HTML/CSS</span>
         </div>
       </div>
       <div class="skill-card fade-in">
-        <div class="skill-card-title">ML Frameworks</div>
+        <div class="skill-card-title">Frameworks</div>
         <div class="skill-tags">
           <span class="skill-tag">TensorFlow</span>
           <span class="skill-tag">Scikit-learn</span>
           <span class="skill-tag">XGBoost</span>
           <span class="skill-tag">LightGBM</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Electron</span>
+          <span class="skill-tag">OpenCV</span>
+          <span class="skill-tag">Streamlit</span>
         </div>
       </div>
       <div class="skill-card fade-in">
@@ -603,9 +719,9 @@
         <div class="skill-tags">
           <span class="skill-tag">Snowflake</span>
           <span class="skill-tag">Git</span>
-          <span class="skill-tag">OpenCV</span>
+          <span class="skill-tag">Docker</span>
           <span class="skill-tag">Google OR-Tools</span>
-          <span class="skill-tag">Streamlit</span>
+          <span class="skill-tag">Hugging Face Spaces</span>
         </div>
       </div>
       <div class="skill-card fade-in">
@@ -615,6 +731,7 @@
           <span class="skill-tag">MLP</span>
           <span class="skill-tag">LSTM</span>
           <span class="skill-tag">LASSO</span>
+          <span class="skill-tag">Gradient Boosting</span>
           <span class="skill-tag">SHAP</span>
           <span class="skill-tag">Feature Engineering</span>
           <span class="skill-tag">Time-Series Analysis</span>
@@ -625,23 +742,10 @@
 
   <hr class="divider" />
 
-  <!-- ─── Leadership ─── -->
+  <!-- ─── Teaching & Outreach ─── -->
   <section id="leadership" style="padding-bottom:3rem;">
-    <p class="section-label">// 05. leadership</p>
+    <p class="section-label">// 06. teaching &amp; outreach</p>
     <h2 class="section-title">Beyond <span>Code</span></h2>
-
-    <div class="card fade-in">
-      <div class="card-header">
-        <div>
-          <div class="card-title">University of Michigan — Bursley Dining Hall</div>
-          <div class="card-subtitle">Student Worker</div>
-        </div>
-        <div class="card-meta">
-          <div class="card-date">Sep 2025 – Present</div>
-          <div class="card-location">Ann Arbor, MI</div>
-        </div>
-      </div>
-    </div>
 
     <div class="card fade-in">
       <div class="card-header">
@@ -654,19 +758,26 @@
           <div class="card-location">Shanghai, China</div>
         </div>
       </div>
+      <ul>
+        <li>Supported course operations by managing attendance records, organizing learning materials, and communicating course announcements to students</li>
+      </ul>
     </div>
 
     <div class="card fade-in">
       <div class="card-header">
         <div>
-          <div class="card-title">Volunteer Teaching — Hengyang, Hunan</div>
-          <div class="card-subtitle">Member of volunteer teaching team</div>
+          <div class="card-title">Yangjia Middle School</div>
+          <div class="card-subtitle">Volunteer Teacher</div>
         </div>
         <div class="card-meta">
           <div class="card-date">Dec 2023</div>
           <div class="card-location">Hunan, China</div>
         </div>
       </div>
+      <ul>
+        <li>Introduced rural middle-school students to mathematical and computing concepts through engaging, accessible lessons</li>
+        <li>Broadened students' exposure to STEM subjects and encouraged curiosity and confidence in learning</li>
+      </ul>
     </div>
   </section>
 
@@ -674,7 +785,7 @@
 
   <!-- ─── Contact ─── -->
   <section id="contact">
-    <p class="section-label">// 06. contact</p>
+    <p class="section-label">// 07. contact</p>
     <h2 class="section-title">Get in <span>Touch</span></h2>
 
     <div class="contact-grid">
@@ -728,12 +839,13 @@
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
   // Smooth scroll for nav links
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
       const target = document.querySelector(a.getAttribute('href'));
       if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
       }
     });
   });
