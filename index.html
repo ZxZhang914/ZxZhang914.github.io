@@ -22,7 +22,6 @@
       --text-dim: #6f929a;
       --green: #69e3b0;
       --yellow: #f5d27a;
-      --grid: rgba(103, 216, 243, 0.045);
       --glow-blue: rgba(56, 189, 248, 0.16);
       --glow-green: rgba(52, 211, 153, 0.12);
       --radius: 12px;
@@ -42,7 +41,6 @@
       --text-dim: #88a6aa;
       --green: #0b7f61;
       --yellow: #a86a08;
-      --grid: rgba(17, 141, 169, 0.055);
       --glow-blue: rgba(125, 211, 252, 0.3);
       --glow-green: rgba(110, 231, 183, 0.22);
       --nav-bg: rgba(243, 251, 251, 0.82);
@@ -55,10 +53,7 @@
       background-color: var(--bg);
       background-image:
         radial-gradient(circle at 12% 8%, var(--glow-blue), transparent 30rem),
-        radial-gradient(circle at 88% 25%, var(--glow-green), transparent 28rem),
-        linear-gradient(var(--grid) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-      background-size: auto, auto, 36px 36px, 36px 36px;
+        radial-gradient(circle at 88% 25%, var(--glow-green), transparent 28rem);
       background-attachment: fixed;
       color: var(--text);
       line-height: 1.7;
@@ -248,9 +243,10 @@
 
     .card-header {
       display: flex; justify-content: space-between; align-items: flex-start;
-      gap: 1rem; flex-wrap: wrap;
+      gap: 1.5rem; flex-wrap: nowrap;
       margin-bottom: 0.5rem;
     }
+    .card-header > div:first-child { flex: 1 1 0; min-width: 0; }
     .card-title { font-size: 1.05rem; font-weight: 600; color: var(--text); }
     .card-subtitle { font-size: 0.925rem; color: var(--accent2); font-style: italic; margin-bottom: 0.4rem; }
     .card-date {
@@ -263,7 +259,7 @@
       font-size: 0.875rem;
       color: var(--text-dim);
     }
-    .card-meta { text-align: right; flex-shrink: 0; }
+    .card-meta { text-align: right; flex: 0 0 auto; margin-left: auto; }
 
     .card ul {
       list-style: none;
@@ -421,7 +417,7 @@
     @media (max-width: 600px) {
       .nav-links { display: none; }
       .card-header { flex-direction: column; }
-      .card-meta { text-align: left; }
+      .card-meta { text-align: left; margin-left: 0; }
       .skills-grid, .contact-grid, .honors-grid { grid-template-columns: 1fr; }
     }
   </style>
